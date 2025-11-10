@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
             if (canJump) playerAnimator.SetBool("Jumping", true);
         }
         if (playerAnimator.GetBool("Jumping")) jumpTime += Time.deltaTime;
-        if (jumpTime > 3f) playerAnimator.SetBool("Jumping", false);
+        if (jumpTime > 2f) playerAnimator.SetBool("Jumping", false);
 
         transform.position += motion * speed;
     }

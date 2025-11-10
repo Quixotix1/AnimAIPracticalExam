@@ -17,6 +17,12 @@ public class Weapon : MonoBehaviour
     private int currentWeapon = 0;
     private GameObject currentWeaponObject;
 
+    public FastIKFabric playerHand;
+    public GameObject DaggerIK;
+    public GameObject ShieldIK;
+    public GameObject DaggerPole;
+    public GameObject ShieldPole;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
@@ -36,6 +42,8 @@ public class Weapon : MonoBehaviour
             {
                 currentWeaponObject = weaponObjects[currentWeapon - 1];
                 currentWeaponObject.SetActive(true);
+                playerHand.ACTarget = currentWeapon == 1 ? DaggerIK.transform : ShieldIK.transform;
+                playerHand.Pole = currentWeapon == 1 ? DaggerPole.transform : ShieldPole.transform;
             }
         }
         if (Input.GetKeyDown(KeyCode.E))
@@ -55,6 +63,8 @@ public class Weapon : MonoBehaviour
             {
                 currentWeaponObject = weaponObjects[currentWeapon - 1];
                 currentWeaponObject.SetActive(true);
+                playerHand.ACTarget = currentWeapon == 1 ? DaggerIK.transform : ShieldIK.transform;
+                playerHand.Pole = currentWeapon == 1 ? DaggerPole.transform : ShieldPole.transform;
             }
         }
     }
@@ -63,7 +73,7 @@ public class Weapon : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.F))
         {
-                if (other.CompareTag("Dagger")) { ownedWeapons[1] = true; Destroy(other.gameObject); }
+            if (other.CompareTag("Dagger")) { ownedWeapons[1] = true; Destroy(other.gameObject); }
             if (other.CompareTag("Shield")) { ownedWeapons[2] = true; Destroy(other.gameObject); }
         }
     }
